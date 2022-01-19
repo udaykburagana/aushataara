@@ -52,7 +52,7 @@
                               color="primary"
                               @click="confirmDetails"
                            >
-                              Confirm Details
+                              Confirm Details & Get Estimate
                            </v-btn>
                         </v-form>
                      </v-card-text>
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import {mapMutations} from 'vuex';
+import {mapActions} from 'vuex';
 export default {
    name: 'OtherDetails',
    data: () => ({
@@ -93,7 +93,7 @@ export default {
        confirmPasswordRule() { return ((this.confirmPassword == this.password) || 'Passwords must Match') },
     },
     methods:{
-       ...mapMutations(["setOtherDetails"]),
+       ...mapActions(["GETDETAILS"]),
       onRegisterClick : function(){
         console.log(`clicked`)
       },
@@ -107,7 +107,7 @@ export default {
                   password: this.password,
                   phoneNumber: this.phoneNumber
                }
-               this.setOtherDetails(args)
+               this.GETDETAILS(args)
             } else {
             // Do nothing!
             }

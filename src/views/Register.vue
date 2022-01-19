@@ -59,13 +59,13 @@
       <v-stepper-content step="3">
         <OtherDetails />
 
-        <v-btn
+        <!-- <v-btn
           color="primary"
           @click="NextStep"
           :disabled="!allDetailsFilled"
         >
           Get Estimate
-        </v-btn>
+        </v-btn> -->
 
         <v-btn 
           @click="e1 = 2"
@@ -94,9 +94,6 @@ export default {
       AddMembers
     },
     methods:{
-      NextStep : function(){
-        this.$router.push('getEstimate') 
-      }
     },
     computed:{
        ...mapState(["selectedPlanId","addedMembers","email","phoneNumber","password","allDetailsFilled"])

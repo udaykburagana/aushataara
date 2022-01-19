@@ -6,14 +6,15 @@
       <router-link to="/register">Register</router-link> -->
     </div>
     <router-view/>
+    <ToastMessage />
   </div>
 </template>
 <script>
 import NavBar from './components/NavBar.vue'
-
+import ToastMessage from './components/ToastMessage.vue'
 export default {
   components: {
-    NavBar
+    NavBar,ToastMessage
   }
 }
 </script>

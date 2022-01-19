@@ -46,6 +46,8 @@
 
 <script>
 import {mapMutations} from "vuex"
+import axios from "axios"
+import {url} from "../config"
 export default {
    name: 'Login',
    data: () => ({
@@ -65,12 +67,23 @@ export default {
       console.log("Mounted");
     },
     methods:{
-       ...mapMutations(["toggleIsLoggedIn"]),
-      onLoginClick : function(){
+       ...mapMutations(["toggleIsLoggedIn","showMessage","setSnackbar"]),
+      onLoginClick : async function(){
         console.log(`clicked-${this.email},${this.password}`)
         if(this.$refs.login.validate()){
-           this.toggleIsLoggedIn(true)
-           this.$router.push('home') 
+           const params = {
+              email: this.email,
+              password: this.password
+           }
+           let res = await axios.post(url+"loginUser",params)
+           if(res.data.success){
+            this.toggleIsLoggedIn(true)
+            this.$router.push('home') 
+           }else{
+              this.toggleIsLoggedIn(false)
+              this.showMessage("userName or password is wrong")
+              console.log("not logged in")
+           }
         }
 
       }
